@@ -1,0 +1,90 @@
+<html lang="pt-BR">
+    <head>
+        <title>Jogo da Velha</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rye&display=swap');
+
+            body {
+                background: #8B4513; /* Marrom escuro para simular a terra ou madeira */
+                color: #FFD700; /* Dourado para os títulos e texto principal */
+                text-align: center;
+                font-family: 'Rye', serif; /* Fonte "Rye" para um estilo clássico de Velho Oeste */
+            }
+
+            h1 {
+                font-family: 'Creepster', cursive; /* Fonte "Creepster" para o título, mais dramática */
+                font-size: 3.5rem;
+                text-shadow: 4px 4px 0px #3E2723; /* Sombra para dar profundidade, como um cartaz de procurado */
+                margin-top: 40px;
+                color: #FFD700;
+            }
+
+            .casa {
+                background: #B8860B; /* Marrom claro, como madeira gasta */
+                border: 2px solid #5C4033; /* Borda escura para dar contraste e separar as casas */
+                border-radius: 8px; /* Cantos arredondados */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4rem; /* Tamanho maior para os 'X' e 'O' */
+                cursor: pointer;
+                color: #5C4033; /* Cor dos marcadores 'X' e 'O' */
+                transition: transform 0.2s ease-in-out; /* Adiciona uma pequena animação */
+            }
+
+            .casa:hover {
+                transform: translateY(-5px); /* Efeito ao passar o mouse, como um botão que salta */
+            }
+
+            .tabuleiro {
+                background: #5C4033; /* Marrom mais escuro para o fundo do tabuleiro */
+                display: grid;
+                grid-template-columns: repeat(3, 120px); /* Tamanho maior para as casas */
+                grid-template-rows: repeat(3, 120px);
+                gap: 8px; /* Aumenta a distância entre as casas */
+                margin: 20px auto;
+                width: max-content;
+                border: 5px solid #3E2723; /* Borda grossa para o tabuleiro */
+                padding: 10px;
+                box-shadow: 10px 10px 0px #3E2723; /* Sombra para o tabuleiro */
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Jogo da Velha</h1>
+        <div class="tabuleiro">
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+            <div class="casa"></div>
+        </div>
+        <script>
+            const casas = document.querySelectorAll(".casa");
+            let jogador ="X";
+
+            const combinacoes = [
+                [0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]
+            ]
+
+            casas.forEach(casa => {
+                casa.addEventListener('click', clique);
+            })
+
+            function clique(event){
+                const casa = event.target;
+                if(casa.textContent === "")  {
+                    casa.textContent = jogador;
+                    jogador = (jogador === "X") ? "O" : "X";
+                }
+            }
+        </script>
+    </body>
+</html>
