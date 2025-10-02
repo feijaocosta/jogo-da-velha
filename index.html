@@ -82,9 +82,29 @@
                 const casa = event.target;
                 if(casa.textContent === "")  {
                     casa.textContent = jogador;
-                    jogador = (jogador === "X") ? "O" : "X";
+
+                    if(checarVencedor()) {
+                        alert("Parabens!!! O Jogador " + jogador + " venceu!!!")
+                    } else {
+                        jogador = (jogador === "X") ? "O" : "X";
+                    }
                 }
             }
+
+            function checarVencedor() {
+                for(let i = 0; i < combinacoes.length; i++) {
+                    const [a,b,c] = combinacoes[i];
+                    if (casas[a].textContent === jogador && 
+                        casas[b].textContent === jogador &&
+                        casas[c].textContent === jogador ){
+                            return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+
         </script>
     </body>
 </html>
